@@ -1,0 +1,5 @@
+replace-chart-version-with-git: true
+generate-metadata: true
+chart-dir: ./helm/gateway-api
+destination: ./build
+disable-giantswarm-helm-validator: true

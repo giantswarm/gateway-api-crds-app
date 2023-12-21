@@ -1,0 +1,21 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+- path: vendor
+  contents:
+  - path: gateway-api
+    githubRelease:
+      slug: kubernetes-sigs/gateway-api
+      tagSelection:
+        semver:
+          contraints: ">=1.0.0"
+      latest: true
+      assetNames: ["standard-install.yaml"]
+      disableAutoChecksumValidation: true
+- path: helm/gateway-api/templates
+  contents:
+  - path: .
+    directory:
+      path: vendor/gateway-api
+    includePaths:
+        - "*.yaml"

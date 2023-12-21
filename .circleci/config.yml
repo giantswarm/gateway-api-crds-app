@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  architect: giantswarm/architect@4.36.0
+  architect: giantswarm/architect@4.35.6
 
 workflows:
   package-and-push-chart-on-tag:
@@ -9,8 +9,8 @@ workflows:
           context: architect
           executor: app-build-suite
           name: package-and-push-chart
-          app_catalog: giantswarm-playground-catalog
-          app_catalog_test: giantswarm-playground-test-catalog
+          app_catalog: giantswarm-catalog
+          app_catalog_test: giantswarm-test-catalog
           chart: "gateway-api"
           # Trigger job on git tag.
           filters:

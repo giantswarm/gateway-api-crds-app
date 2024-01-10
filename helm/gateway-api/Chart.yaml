@@ -1,6 +1,5 @@
 apiVersion: v2
 appVersion: 1.0.0
-# Please make sure your name DOES NOT end in "app" or "-app".
 name: gateway-api
 # Please describe what the app provides in a sentence or two.
 description: App to install Gateway API CRDs to Giantswarm Clusters

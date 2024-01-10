@@ -14,3 +14,7 @@ sources:
 version: 0.1.0 
 annotations:
   application.giantswarm.io/team: team-cabbage
+restrictions:
+  clusterSingleton: true
+  namespaceSingleton: true
+  fixedNamespace: kube-system

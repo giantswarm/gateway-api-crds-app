@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-01-15
+
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/giantswarm/gateway-api/tree/main
+[Unreleased]: https://github.com/giantswarm/gateway-api-app/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/giantswarm/gateway-api-app/releases/tag/v1.0.0

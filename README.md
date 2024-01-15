@@ -2,8 +2,7 @@
 
 # gateway-api chart
 
-This App installes the gateway-api CRDs.
-`webhook-install.yaml` is deployed for kubernetes version <1.25 but is omitted for 1.25+ [release note reference](https://github.com/kubernetes-sigs/gateway-api/releases/tag/v1.0.0)
+This App installs the [Gateway API](https://gateway-api.sigs.k8s.io/) custom resource definitions
 
 See our [full reference on how to configure apps](https://docs.giantswarm.io/getting-started/app-platform/app-configuration/) for more details.
 

@@ -14,3 +14,4 @@ sources:
 version: 0.1.0 
 annotations:
   application.giantswarm.io/team: team-cabbage
+kubeVersion: ">=1.25.0-0"

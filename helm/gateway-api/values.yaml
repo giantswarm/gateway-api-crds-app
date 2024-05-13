@@ -1,12 +1,1 @@
-name: gateway-api
-serviceType: managed
-
-project:
-  branch: "[[ .Branch ]]"
-  commit: "[[ .SHA ]]"
-
-image:
-  registry: quay.io
-  name: giantswarm/gateway-api
-  tag: v0.0.1
-  pullPolicy: IfNotPresent
+{}

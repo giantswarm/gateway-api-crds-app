@@ -5,7 +5,7 @@ description: App to install Gateway API CRDs to Giantswarm Clusters
 home: https://github.com/giantswarm/gateway-api-app
 sources:
   - https://github.com/kubernetes-sigs/gateway-api
-version: 1.0.0
+version: 1.1.0
 annotations:
   application.giantswarm.io/team: team-cabbage
 kubeVersion: ">=1.25.0-0"

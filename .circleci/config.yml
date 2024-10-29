@@ -5,14 +5,18 @@ orbs:
 workflows:
   package-and-push-chart-on-tag:
     jobs:
-      - architect/push-to-app-catalog:
-          context: architect
-          executor: app-build-suite
-          name: package-and-push-chart
-          app_catalog: giantswarm-catalog
-          app_catalog_test: giantswarm-test-catalog
-          chart: "gateway-api"
+    - architect/push-to-app-catalog:
+        context: architect
+        executor: app-build-suite
+        name: package-and-push-chart
+        app_catalog: giantswarm-catalog
+        app_catalog_test: giantswarm-test-catalog
+        chart: gateway-api
           # Trigger job on git tag.
-          filters:
-            tags:
-              only: /^v.*/
+        filters:
+          tags:
+            only: /^v.*/
+          branches:
+            ignore:
+            - main
+            - master

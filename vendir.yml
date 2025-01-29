@@ -12,7 +12,7 @@ directories:
       latest: true
       assetNames: ["standard-install.yaml"]
       disableAutoChecksumValidation: true
-- path: helm/gateway-api/templates
+- path: helm/gateway-api-crds/templates
   contents:
   - path: .
     directory:

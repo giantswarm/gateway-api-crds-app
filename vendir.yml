@@ -10,7 +10,7 @@ directories:
         semver:
           contraints: ">=1.2.1"
       latest: true
-      assetNames: ["standard-install.yaml"]
+      assetNames: ["experimental-install.yaml"]
       disableAutoChecksumValidation: true
 - path: helm/gateway-api-crds/templates
   contents:

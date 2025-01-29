@@ -1,6 +1,6 @@
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/gateway-api/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/gateway-api/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/gateway-api-crds-app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/gateway-api-crds-app/tree/main)
 
-# gateway-api chart
+# gateway-api-crds chart
 
 This App installs the [Gateway API](https://gateway-api.sigs.k8s.io/) custom resource definitions
 

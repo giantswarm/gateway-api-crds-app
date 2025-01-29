@@ -8,7 +8,7 @@ directories:
       slug: kubernetes-sigs/gateway-api
       tagSelection:
         semver:
-          contraints: ">=1.0.0"
+          contraints: ">=1.2.1"
       latest: true
       assetNames: ["standard-install.yaml"]
       disableAutoChecksumValidation: true

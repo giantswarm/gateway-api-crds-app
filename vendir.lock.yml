@@ -2,12 +2,12 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - githubRelease:
-      tag: v1.1.0
-      url: https://api.github.com/repos/kubernetes-sigs/gateway-api/releases/154862067
+      tag: v1.2.1
+      url: https://api.github.com/repos/kubernetes-sigs/gateway-api/releases/188208381
     path: gateway-api
   path: vendor
 - contents:
   - directory: {}
     path: .
-  path: helm/gateway-api/templates
+  path: helm/gateway-api-crds/templates
 kind: LockConfig

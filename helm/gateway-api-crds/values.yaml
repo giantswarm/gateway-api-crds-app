@@ -1,12 +1,22 @@
 install:
+  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
   gatewayclasses: standard
+  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
   gateways: standard
+  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
   grpcroutes: standard
+  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
   httproutes: standard
+  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
   referencegrants: standard
 
+  # Supports "experimental" and "" (empty string to disable rendering this CRD)
   backendlbpolicies: ""
+  # Supports "experimental" and "" (empty string to disable rendering this CRD)
   backendtlspolicies: ""
+  # Supports "experimental" and "" (empty string to disable rendering this CRD)
   tcproutes: ""
+  # Supports "experimental" and "" (empty string to disable rendering this CRD)
   tlsroutes: ""
+  # Supports "experimental" and "" (empty string to disable rendering this CRD)
   udproutes: ""

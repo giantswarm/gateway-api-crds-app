@@ -6,8 +6,4 @@ directories:
       url: https://api.github.com/repos/kubernetes-sigs/gateway-api/releases/188208381
     path: gateway-api
   path: vendor
-- contents:
-  - directory: {}
-    path: .
-  path: helm/gateway-api-crds/templates
 kind: LockConfig

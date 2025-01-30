@@ -1,1 +1,12 @@
-{}
+install:
+  gatewayclasses: standard
+  gateways: standard
+  grpcroutes: standard
+  httproutes: standard
+  referencegrants: standard
+
+  backendlbpolicies: ""
+  backendtlspolicies: ""
+  tcproutes: ""
+  tlsroutes: ""
+  udproutes: ""

@@ -14,6 +14,8 @@ vendir sync
 
 # Patches
 ./sync/patches/split-crds/patch.sh
+./sync/patches/helm-keep-annotation/patch.sh
+./sync/patches/helm-templating/patch.sh
 
 # Skip diff storage for now
 

@@ -10,6 +10,7 @@ metadata:
     api-approved.kubernetes.io: https://github.com/kubernetes-sigs/gateway-api/pull/3328
     gateway.networking.k8s.io/bundle-version: v1.2.1
     gateway.networking.k8s.io/channel: experimental
+    helm.sh/resource-policy: keep
   creationTimestamp: null
   name: httproutes.gateway.networking.k8s.io
 spec:

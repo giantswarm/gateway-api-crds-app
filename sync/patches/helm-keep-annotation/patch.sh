@@ -9,13 +9,22 @@ script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd ) ; readonly script_d
 
 cd "${repo_dir}"
 
-raw_crds_path="../../../vendor/gateway-api"
 templates_path="./helm/gateway-api-crds/templates/"
 
 set -x
 
 cd "${templates_path}"
-yq --split-exp '.metadata.annotations."gateway.networking.k8s.io/channel" + "-" + .metadata.name + ".yaml"' "${raw_crds_path}"/*.yaml
 
+{ set +x; } 2>/dev/null
+for f in *.yaml ; do
+  [[ "$f" == "_helpers.yaml" ]] && continue
+
+  set -x
+  yq -i '.metadata.annotations += {"helm.sh/resource-policy":"keep"}' $f
+
+  { set +x; } 2>/dev/null
+done
+
+set -x
 cd "${repo_dir}"
 { set +x; } 2>/dev/null

@@ -6,7 +6,7 @@ directories:
   - path: gateway-api
     githubRelease:
       slug: kubernetes-sigs/gateway-api
-      tag: "v1.2.1"
+      tag: "v1.4.0"
       assetNames:
         - standard-install.yaml
         - experimental-install.yaml

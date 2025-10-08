@@ -20,3 +20,8 @@ install:
   tlsroutes: ""
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
   udproutes: ""
+
+  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
+  inferencepools: ""
+  # Supports "experimental" and "" (empty string to disable rendering this CRD)
+  inferenceobjectives: ""

@@ -18,13 +18,33 @@ cd "${templates_path}"
 { set +x; } 2>/dev/null
 for f in *.yaml ; do
   [[ "$f" == "_helpers.yaml" ]] && continue
-
   name=$(yq '.spec.names.plural' $f)
-  channel=$(yq '.metadata.annotations."gateway.networking.k8s.io/channel"' $f)
-  set -x
-  echo "{{ if eq .Values.install.$name \"$channel\" }}" | cat - $f > _temp #
-  echo "{{ end }}" >> _temp
-  mv _temp $f
+
+  # treat gateway.networking files
+  if [[ "$f" = *.gateway.networking.k8s.io.yaml ]]; then
+    channel=$(yq '.metadata.annotations."gateway.networking.k8s.io/channel"' $f)
+    set -x
+    echo "{{ if eq .Values.install.$name \"$channel\" }}" | cat - $f > _temp #
+    echo "{{ end }}" >> _temp
+    { set +x; } 2>/dev/null
+    mv _temp $f
+  fi
+
+  if [[ "$f" = *.inference.networking.k8s.io.yaml ]]; then
+    set -x
+    echo "{{ if eq .Values.install.$name \"standard\" }}" | cat - $f > _temp #
+    echo "{{ end }}" >> _temp
+    { set +x; } 2>/dev/null
+    mv _temp $f
+  fi
+
+  if [[ "$f" = *.inference.networking.x-k8s.io.yaml ]]; then
+    set -x
+    echo "{{ if eq .Values.install.$name \"experimental\" }}" | cat - $f > _temp #
+    echo "{{ end }}" >> _temp
+    { set +x; } 2>/dev/null
+    mv _temp $f
+  fi
 
   { set +x; } 2>/dev/null
 done

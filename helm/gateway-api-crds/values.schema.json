@@ -44,6 +44,14 @@
                 "udproutes": {
                     "type": "string",
                     "enum": ["experimental", ""]
+                },
+                "inferencepools": {
+                    "type": "string",
+                    "enum": ["standard", "experimental", ""]
+                },
+                "inferenceobjectives": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
                 }
             }
         }

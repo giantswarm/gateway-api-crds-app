@@ -13,7 +13,8 @@ vendir sync
 { set +x; } 2>/dev/null
 
 # Patches
-./sync/patches/split-crds/patch.sh
+./sync/patches/split-gapi-crds/patch.sh
+./sync/patches/split-inference-crds/patch.sh
 ./sync/patches/helm-keep-annotation/patch.sh
 ./sync/patches/helm-templating/patch.sh
 

@@ -7,7 +7,7 @@
             "properties": {
                 "backendtlspolicies": {
                     "type": "string",
-                    "enum": ["experimental", ""]
+                    "enum": ["standard", "experimental", ""]
                 },
                 "gatewayclasses": {
                     "type": "string",
@@ -46,6 +46,10 @@
                     "enum": ["experimental", ""]
                 },
                 "xlistenersets": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
+                },
+                "xmeshes": {
                     "type": "string",
                     "enum": ["experimental", ""]
                 },

@@ -2,8 +2,8 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - githubRelease:
-      tag: v1.3.0
-      url: https://api.github.com/repos/kubernetes-sigs/gateway-api/releases/214381245
+      tag: v1.4.0
+      url: https://api.github.com/repos/kubernetes-sigs/gateway-api/releases/252387623
     path: gateway-api
   - githubRelease:
       tag: v1.0.1

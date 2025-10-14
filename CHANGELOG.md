@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update `appVersion` to reflect versions of included Gateway API and Gateway API Inference Extension CRDs
+
 ### Added
 
-- Add [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) CRDs
+- Add [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) [v1.0.1](https://github.com/kubernetes-sigs/gateway-api-inference-extension/releases/tag/v1.0.1) CRDs
 
 ## [1.2.1] - 2025-06-10
 

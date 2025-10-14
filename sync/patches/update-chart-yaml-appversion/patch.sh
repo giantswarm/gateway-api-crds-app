@@ -19,14 +19,4 @@ inference_extension_version=$(yq e '.directories[0].contents[] | select(.path ==
 
 yq -i ".appVersion = \"gateway-api: $gateway_api_version, gateway-api-inference-extension: $inference_extension_version\"" $chart_yaml_path
 
-# for f in *.yaml ; do
-#   [[ "$f" == "_helpers.yaml" ]] && continue
-
-#   set -x
-#   yq -i '.metadata.annotations += {"helm.sh/resource-policy":"keep"}' $f
-
-#   { set +x; } 2>/dev/null
-# done
-
-# set -x
 { set +x; } 2>/dev/null

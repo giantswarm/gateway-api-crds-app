@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade Gateway API CRDs to [v1.3.0](https://github.com/kubernetes-sigs/gateway-api/releases/tag/v1.3.0)
+  **We strongly suggest reading the upstream release notes.**
+- Remove `install.backendlbpolicies` value
+- Add `install.xbackendtrafficpolicies` and `install.xlistenersets` values
+
 ## [1.3.0] - 2025-10-14
 
 ### Changed

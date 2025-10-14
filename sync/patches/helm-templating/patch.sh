@@ -21,7 +21,7 @@ for f in *.yaml ; do
   name=$(yq '.spec.names.plural' $f)
 
   # treat gateway.networking files
-  if [[ "$f" = *.gateway.networking.k8s.io.yaml ]]; then
+  if [[ "$f" = *.gateway.networking.*k8s.io.yaml ]]; then
     channel=$(yq '.metadata.annotations."gateway.networking.k8s.io/channel"' $f)
     set -x
     echo "{{ if eq .Values.install.$name \"$channel\" }}" | cat - $f > _temp #

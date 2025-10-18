@@ -6,8 +6,8 @@ directories:
       url: https://api.github.com/repos/kubernetes-sigs/gateway-api/releases/252387623
     path: gateway-api
   - githubRelease:
-      tag: v1.0.1
-      url: https://api.github.com/repos/kubernetes-sigs/gateway-api-inference-extension/releases/250158628
+      tag: v1.0.2
+      url: https://api.github.com/repos/kubernetes-sigs/gateway-api-inference-extension/releases/255393822
     path: gateway-api-inference-extension
   path: vendor
 kind: LockConfig

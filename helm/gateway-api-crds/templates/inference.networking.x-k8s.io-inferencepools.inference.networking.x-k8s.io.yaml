@@ -5,9 +5,8 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     api-approved.kubernetes.io: unapproved, experimental-only
-    inference.networking.k8s.io/bundle-version: v1.0.1
+    inference.networking.k8s.io/bundle-version: v1.0.2
     helm.sh/resource-policy: keep
-  creationTimestamp: null
   name: inferencepools.inference.networking.x-k8s.io
 spec:
   group: inference.networking.x-k8s.io

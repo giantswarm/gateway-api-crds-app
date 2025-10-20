@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2025-10-20
+
 ### Changed
 
 - Upgrade [Gateway API Inference Extension](https://gateway-api-inference-extension.sigs.k8s.io/) CRDs to [v1.0.2](https://github.com/kubernetes-sigs/gateway-api-inference-extension/releases/tag/v1.0.1)
@@ -66,7 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.2.1...v1.3.0

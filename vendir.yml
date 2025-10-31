@@ -14,7 +14,7 @@ directories:
   - path: gateway-api-inference-extension
     githubRelease:
       slug: kubernetes-sigs/gateway-api-inference-extension
-      tag: "v1.0.2"
+      tag: "v1.1.0"
       # according to https://github.com/kubernetes-sigs/gateway-api-inference-extension/issues/1611
       # we only need `manifests.yaml` for both stable and experimental CRD versions
       assetNames:

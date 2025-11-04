@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 'gateway-api: v1.4.0, gateway-api-inference-extension: v1.0.2'
+appVersion: 'gateway-api: v1.4.0, gateway-api-inference-extension: v1.1.0'
 name: gateway-api-crds
 description: App to install Gateway API CRDs to Giantswarm Clusters
 home: https://github.com/giantswarm/gateway-api-crds-app

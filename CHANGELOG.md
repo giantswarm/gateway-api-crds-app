@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade Gateway API CRDs to [v1.4.1](https://github.com/kubernetes-sigs/gateway-api/releases/tag/v1.4.1)
+
 ## [1.6.0] - 2025-11-04
 
 ### Changed

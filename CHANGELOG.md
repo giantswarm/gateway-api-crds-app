@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.1] - 2026-01-12
+
 ### Changed
 
 - Upgrade Gateway API CRDs to [v1.4.1](https://github.com/kubernetes-sigs/gateway-api/releases/tag/v1.4.1)
@@ -78,7 +80,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.6.1...HEAD
+[1.6.1]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.5.1...v1.6.0
 [1.5.1]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.4.0...v1.5.0

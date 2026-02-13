@@ -7,7 +7,7 @@ icon: https://s.giantswarm.io/app-icons/gateway-api/1/light.svg
 sources:
   - https://github.com/kubernetes-sigs/gateway-api
   - https://github.com/kubernetes-sigs/gateway-api-inference-extension
-version: 1.6.1
+version: 1.7.0
 annotations:
   io.giantswarm.application.team: cabbage
   io.giantswarm.application.audience: "all"

@@ -29,3 +29,6 @@ install:
   inferencepools: ""
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
   inferenceobjectives: ""
+
+  # Set to true to install ValidatingAdmissionPolicyBinding resources
+  admissionPolicies: true

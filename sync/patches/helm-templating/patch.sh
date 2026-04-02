@@ -22,12 +22,21 @@ for f in *.yaml ; do
 
   # treat gateway.networking files
   if [[ "$f" = *.gateway.networking.*k8s.io.yaml ]]; then
-    channel=$(yq '.metadata.annotations."gateway.networking.k8s.io/channel"' $f)
-    set -x
-    echo "{{ if eq .Values.install.$name \"$channel\" }}" | cat - $f > _temp #
-    echo "{{ end }}" >> _temp
-    { set +x; } 2>/dev/null
-    mv _temp $f
+    kind=$(yq '.kind' $f)
+    if [[ "$kind" == "ValidatingAdmissionPolicyBinding" ]]; then
+      set -x
+      echo "{{ if .Values.install.admissionPolicies }}" | cat - $f > _temp
+      echo "{{ end }}" >> _temp
+      { set +x; } 2>/dev/null
+      mv _temp $f
+    else
+      channel=$(yq '.metadata.annotations."gateway.networking.k8s.io/channel"' $f)
+      set -x
+      echo "{{ if eq .Values.install.$name \"$channel\" }}" | cat - $f > _temp #
+      echo "{{ end }}" >> _temp
+      { set +x; } 2>/dev/null
+      mv _temp $f
+    fi
   fi
 
   if [[ "$f" = *.inference.networking.k8s.io.yaml ]]; then

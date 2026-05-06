@@ -2,12 +2,12 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - githubRelease:
-      tag: v1.4.1
-      url: https://api.github.com/repos/kubernetes-sigs/gateway-api/releases/267312881
+      tag: v1.5.1
+      url: https://api.github.com/repos/kubernetes-sigs/gateway-api/releases/296866668
     path: gateway-api
   - githubRelease:
-      tag: v1.3.0
-      url: https://api.github.com/repos/kubernetes-sigs/gateway-api-inference-extension/releases/278480309
+      tag: v1.4.0
+      url: https://api.github.com/repos/kubernetes-sigs/gateway-api-inference-extension/releases/299254776
     path: gateway-api-inference-extension
   path: vendor
 kind: LockConfig

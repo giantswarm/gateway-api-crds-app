@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-05-22
+
 - Upgrade Gateway API Inference Extension CRDs to [v1.4.0](https://github.com/kubernetes-sigs/gateway-api-inference-extension/releases/tag/v1.4.0)
 - Upgrade Gateway API CRDs to [v1.5.1](https://github.com/kubernetes-sigs/gateway-api/releases/tag/v1.5.1)
 - Add `install.admissionPolicies` value (default `true`) to control installation of `ValidatingAdmissionPolicyBinding` resources
@@ -91,7 +93,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.8.0...HEAD
+[1.8.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.6.1...v1.7.0
 [1.6.1]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.5.1...v1.6.0

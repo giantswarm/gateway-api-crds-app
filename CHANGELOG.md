@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Update `install.listenersets` value to `standard` (renamed from `xlistenersets`)
+- Update `install.tlsroutes` value to `standard`
+
 ## [1.8.0] - 2026-05-22
 
 - Upgrade Gateway API Inference Extension CRDs to [v1.4.0](https://github.com/kubernetes-sigs/gateway-api-inference-extension/releases/tag/v1.4.0)

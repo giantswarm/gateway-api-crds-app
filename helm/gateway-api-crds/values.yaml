@@ -11,17 +11,17 @@ install:
   referencegrants: standard
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
   backendtlspolicies: standard
+  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
+  listenersets: "standard"
 
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
   tcproutes: ""
-  # Supports "experimental" and "" (empty string to disable rendering this CRD)
-  tlsroutes: ""
+  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
+  tlsroutes: standard
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
   udproutes: ""
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
   xbackendtrafficpolicies: ""
-  # Supports "experimental" and "" (empty string to disable rendering this CRD)
-  xlistenersets: ""
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
   xmeshes: ""
 

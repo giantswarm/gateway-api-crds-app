@@ -35,7 +35,7 @@
                 },
                 "tlsroutes": {
                     "type": "string",
-                    "enum": ["experimental", ""]
+                    "enum": ["standard", "experimental", ""]
                 },
                 "udproutes": {
                     "type": "string",
@@ -45,9 +45,9 @@
                     "type": "string",
                     "enum": ["experimental", ""]
                 },
-                "xlistenersets": {
+                "listenersets": {
                     "type": "string",
-                    "enum": ["experimental", ""]
+                    "enum": ["standard", "experimental", ""]
                 },
                 "xmeshes": {
                     "type": "string",
@@ -60,6 +60,9 @@
                 "inferenceobjectives": {
                     "type": "string",
                     "enum": ["experimental", ""]
+                },
+                "admissionPolicies": {
+                    "type": "boolean"
                 }
             }
         }

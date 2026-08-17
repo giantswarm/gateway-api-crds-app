@@ -14,12 +14,14 @@ install:
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
   listenersets: "standard"
 
-  # Supports "experimental" and "" (empty string to disable rendering this CRD)
-  tcproutes: ""
+  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
+  tcproutes: standard
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
   tlsroutes: standard
+  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
+  udproutes: standard
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
-  udproutes: ""
+  xbackends: ""
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
   xbackendtrafficpolicies: ""
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
@@ -29,6 +31,10 @@ install:
   inferencepools: ""
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
   inferenceobjectives: ""
+  # Supports "experimental" and "" (empty string to disable rendering this CRD)
+  inferencepoolimports: ""
+  # Supports "experimental" and "" (empty string to disable rendering this CRD)
+  inferencemodelrewrites: ""
 
-  # Set to true to install ValidatingAdmissionPolicyBinding resources
+  # Set to true to install the safe-upgrades ValidatingAdmissionPolicy and its binding
   admissionPolicies: true

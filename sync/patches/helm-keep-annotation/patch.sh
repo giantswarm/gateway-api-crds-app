@@ -18,6 +18,9 @@ cd "${templates_path}"
 { set +x; } 2>/dev/null
 for f in *.yaml ; do
   [[ "$f" == "_helpers.yaml" ]] && continue
+  # Keeping the admission policy around after an uninstall would block reinstalling
+  # older CRDs on that cluster.
+  [[ "$f" == standard-safe-upgrades-* ]] && continue
 
   set -x
   yq -i '.metadata.annotations += {"helm.sh/resource-policy":"keep"}' $f

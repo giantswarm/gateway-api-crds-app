@@ -23,7 +23,7 @@ for f in *.yaml ; do
   # treat gateway.networking files
   if [[ "$f" = *.gateway.networking.*k8s.io.yaml ]]; then
     kind=$(yq '.kind' $f)
-    if [[ "$kind" == "ValidatingAdmissionPolicyBinding" ]]; then
+    if [[ "$kind" == "ValidatingAdmissionPolicy" || "$kind" == "ValidatingAdmissionPolicyBinding" ]]; then
       set -x
       echo "{{ if .Values.install.admissionPolicies }}" | cat - $f > _temp
       echo "{{ end }}" >> _temp

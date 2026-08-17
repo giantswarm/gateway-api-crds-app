@@ -31,13 +31,17 @@
                 },
                 "tcproutes": {
                     "type": "string",
-                    "enum": ["experimental", ""]
+                    "enum": ["standard", "experimental", ""]
                 },
                 "tlsroutes": {
                     "type": "string",
                     "enum": ["standard", "experimental", ""]
                 },
                 "udproutes": {
+                    "type": "string",
+                    "enum": ["standard", "experimental", ""]
+                },
+                "xbackends": {
                     "type": "string",
                     "enum": ["experimental", ""]
                 },
@@ -58,6 +62,14 @@
                     "enum": ["standard", "experimental", ""]
                 },
                 "inferenceobjectives": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
+                },
+                "inferencepoolimports": {
+                    "type": "string",
+                    "enum": ["experimental", ""]
+                },
+                "inferencemodelrewrites": {
                     "type": "string",
                     "enum": ["experimental", ""]
                 },

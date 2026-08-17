@@ -59,7 +59,7 @@
                 },
                 "inferencepools": {
                     "type": "string",
-                    "enum": ["standard", "experimental", ""]
+                    "enum": ["standard", ""]
                 },
                 "inferenceobjectives": {
                     "type": "string",

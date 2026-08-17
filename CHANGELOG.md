@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Upgrade Gateway API CRDs to [v1.6.1](https://github.com/kubernetes-sigs/gateway-api/releases/tag/v1.6.1)
+- Upgrade Gateway API Inference Extension CRDs to [v1.5.0](https://github.com/kubernetes-sigs/gateway-api-inference-extension/releases/tag/v1.5.0)
 - Set `install.tcproutes` and `install.udproutes` to `standard`, following their graduation to the standard channel. Required by Envoy Gateway 1.9, which reconciles them via `gateway.networking.k8s.io/v1`.
 - Install the `safe-upgrades` `ValidatingAdmissionPolicy`, which was previously dropped and left its binding orphaned. Set `install.admissionPolicies` to `false` to skip both.
 
@@ -17,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add `install.xbackends` value for the new experimental XBackend CRD.
 - Add `install.inferencepoolimports` and `install.inferencemodelrewrites` values, whose CRDs shipped without a way to enable them.
+
+### Removed
+
+- Remove the alpha `InferencePool` CRD (`inference.networking.x-k8s.io/v1alpha2`), dropped upstream in Inference Extension v1.5.0. `install.inferencepools` now only accepts `standard` or `""`.
 
 ## [1.8.1] - 2026-05-28
 

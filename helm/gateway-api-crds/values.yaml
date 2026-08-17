@@ -27,7 +27,7 @@ install:
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
   xmeshes: ""
 
-  # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
+  # Supports "standard" and "" (empty string to disable rendering this CRD)
   inferencepools: ""
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
   inferenceobjectives: ""

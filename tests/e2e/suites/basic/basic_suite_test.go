@@ -10,11 +10,10 @@ import (
 	"github.com/giantswarm/apptest-framework/v5/pkg/suite"
 	"github.com/giantswarm/clustertest/v5/pkg/client"
 
-	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/meta"
-	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
-	"k8s.io/client-go/kubernetes/scheme"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
+	"k8s.io/apimachinery/pkg/runtime/schema"
 	cr "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
@@ -25,12 +24,6 @@ const (
 	// installer hook resources are created in.
 	installNamespace = "kube-system"
 )
-
-// The clustertest clients are built on the client-go scheme, which doesn't know about
-// CustomResourceDefinitions. Register them so the tests can work with typed objects.
-func init() {
-	utilruntime.Must(apiextensionsv1.AddToScheme(scheme.Scheme))
-}
 
 func TestBasic(t *testing.T) {
 	suite.New().
@@ -70,6 +63,20 @@ func wcClient() *client.Client {
 	Expect(wcClient).NotTo(BeNil())
 
 	return wcClient
+}
+
+// newCRD returns an empty CustomResourceDefinition object. CRDs aren't part of the scheme the
+// clustertest clients are built on, so they are handled as unstructured objects.
+func newCRD(name string) *unstructured.Unstructured {
+	crd := &unstructured.Unstructured{}
+	crd.SetGroupVersionKind(schema.GroupVersionKind{
+		Group:   "apiextensions.k8s.io",
+		Version: "v1",
+		Kind:    "CustomResourceDefinition",
+	})
+	crd.SetName(name)
+
+	return crd
 }
 
 // isNotFound gets the given object and reports whether the API server doesn't know it.

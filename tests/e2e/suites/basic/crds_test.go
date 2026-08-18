@@ -10,7 +10,7 @@ import (
 
 	"github.com/giantswarm/apptest-framework/v5/pkg/state"
 
-	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	cr "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
@@ -65,8 +65,8 @@ func installedCRDs() []string {
 }
 
 // getCRD fetches a CRD from the workload cluster, failing the test if it isn't there.
-func getCRD(name string) *apiextensionsv1.CustomResourceDefinition {
-	crd := &apiextensionsv1.CustomResourceDefinition{}
+func getCRD(name string) *unstructured.Unstructured {
+	crd := newCRD(name)
 	Expect(wcClient().Get(state.GetContext(), cr.ObjectKey{Name: name}, crd)).To(Succeed())
 
 	return crd
@@ -77,13 +77,21 @@ func getCRD(name string) *apiextensionsv1.CustomResourceDefinition {
 func crdEstablishedTests() {
 	for _, name := range installedCRDs() {
 		By(fmt.Sprintf("checking CRD %s is established", name))
-		crd := &apiextensionsv1.CustomResourceDefinition{}
+		crd := newCRD(name)
 		Eventually(func() error {
 			if err := wcClient().Get(state.GetContext(), cr.ObjectKey{Name: name}, crd); err != nil {
 				return err
 			}
-			for _, condition := range crd.Status.Conditions {
-				if condition.Type == apiextensionsv1.Established && condition.Status == apiextensionsv1.ConditionTrue {
+			conditions, _, err := unstructured.NestedSlice(crd.Object, "status", "conditions")
+			if err != nil {
+				return err
+			}
+			for _, condition := range conditions {
+				condition, ok := condition.(map[string]any)
+				if !ok {
+					continue
+				}
+				if condition["type"] == "Established" && condition["status"] == "True" {
 					return nil
 				}
 			}
@@ -96,17 +104,21 @@ func crdEstablishedTests() {
 
 		By(fmt.Sprintf("checking CRD %s was applied by the installer Job", name))
 		managers := []string{}
-		for _, entry := range crd.ManagedFields {
+		for _, entry := range crd.GetManagedFields() {
 			managers = append(managers, entry.Manager)
 		}
 		Expect(managers).To(ContainElement(installerFieldManager))
 
 		By(fmt.Sprintf("checking CRD %s has a single served storage version", name))
+		versions, _, err := unstructured.NestedSlice(crd.Object, "spec", "versions")
+		Expect(err).NotTo(HaveOccurred())
 		storageVersions := []string{}
-		for _, version := range crd.Spec.Versions {
-			if version.Storage {
-				Expect(version.Served).To(BeTrue(), "storage version %s of %s is not served", version.Name, name)
-				storageVersions = append(storageVersions, version.Name)
+		for _, version := range versions {
+			version, ok := version.(map[string]any)
+			Expect(ok).To(BeTrue())
+			if version["storage"] == true {
+				Expect(version["served"]).To(BeTrue(), "storage version %v of %s is not served", version["name"], name)
+				storageVersions = append(storageVersions, fmt.Sprintf("%v", version["name"]))
 			}
 		}
 		Expect(storageVersions).To(HaveLen(1))
@@ -119,12 +131,12 @@ func crdVersionTests() {
 	bundleVersion := ""
 	for _, name := range gatewayAPICRDs {
 		By(fmt.Sprintf("checking CRD %s is from the standard channel", name))
-		crd := getCRD(name)
-		Expect(crd.Annotations).To(HaveKeyWithValue(channelAnnotation, "standard"))
+		annotations := getCRD(name).GetAnnotations()
+		Expect(annotations).To(HaveKeyWithValue(channelAnnotation, "standard"))
 
 		By(fmt.Sprintf("checking CRD %s bundle version", name))
-		Expect(crd.Annotations).To(HaveKey(bundleVersionAnnotation))
-		version := crd.Annotations[bundleVersionAnnotation]
+		Expect(annotations).To(HaveKey(bundleVersionAnnotation))
+		version := annotations[bundleVersionAnnotation]
 		Expect(version).To(MatchRegexp(bundleVersionRegex.String()))
 
 		if bundleVersion == "" {
@@ -135,9 +147,9 @@ func crdVersionTests() {
 
 	for _, name := range inferenceCRDs {
 		By(fmt.Sprintf("checking CRD %s bundle version", name))
-		crd := getCRD(name)
-		Expect(crd.Annotations).To(HaveKey(inferenceBundleVersionAnnotation))
-		Expect(crd.Annotations[inferenceBundleVersionAnnotation]).To(MatchRegexp(bundleVersionRegex.String()))
+		annotations := getCRD(name).GetAnnotations()
+		Expect(annotations).To(HaveKey(inferenceBundleVersionAnnotation))
+		Expect(annotations[inferenceBundleVersionAnnotation]).To(MatchRegexp(bundleVersionRegex.String()))
 	}
 }
 
@@ -145,12 +157,12 @@ func crdVersionTests() {
 func crdNotSelectedTests() {
 	for _, name := range disabledCRDs {
 		By(fmt.Sprintf("checking CRD %s is not installed", name))
-		Expect(isNotFound(&apiextensionsv1.CustomResourceDefinition{}, cr.ObjectKey{Name: name})()).
+		Expect(isNotFound(newCRD(name), cr.ObjectKey{Name: name})()).
 			To(BeTrue(), "CRD %s is installed but not selected by the chart values", name)
 	}
 }
 
 // gatewayAPIBundleVersion returns the bundle version of the installed Gateway API CRDs.
 func gatewayAPIBundleVersion() string {
-	return getCRD("httproutes.gateway.networking.k8s.io").Annotations[bundleVersionAnnotation]
+	return getCRD("httproutes.gateway.networking.k8s.io").GetAnnotations()[bundleVersionAnnotation]
 }

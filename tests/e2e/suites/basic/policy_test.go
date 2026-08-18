@@ -9,9 +9,7 @@ import (
 	"github.com/giantswarm/apptest-framework/v5/pkg/state"
 
 	admissionregistrationv1 "k8s.io/api/admissionregistration/v1"
-	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/utils/ptr"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	cr "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
@@ -57,9 +55,7 @@ func admissionPolicyResourceTests() {
 func admissionPolicyEnforcementTests() {
 	// The test CRD must not outlive the suite, not even when the policy fails to reject it.
 	DeferCleanup(func() {
-		deleteAndWait(&apiextensionsv1.CustomResourceDefinition{
-			ObjectMeta: metav1.ObjectMeta{Name: testCRDName},
-		})
+		deleteAndWait(newCRD(testCRDName))
 	})
 
 	By("checking a Gateway API CRD from an unsupported bundle is rejected")
@@ -73,40 +69,38 @@ func admissionPolicyEnforcementTests() {
 
 // testCRD builds a throwaway CRD in the Gateway API group, annotated with the given bundle
 // version so the safe-upgrades policy is exercised.
-func testCRD(bundleVersion string) *apiextensionsv1.CustomResourceDefinition {
-	return &apiextensionsv1.CustomResourceDefinition{
-		ObjectMeta: metav1.ObjectMeta{
-			Name: testCRDName,
-			Annotations: map[string]string{
-				// CRDs in the *.k8s.io groups need an approval annotation. This one is
-				// never part of the API, so it explicitly bypasses the approval process.
-				"api-approved.kubernetes.io": "unapproved.kubernetes.io/e2e-test",
-				channelAnnotation:            "standard",
-				bundleVersionAnnotation:      bundleVersion,
-			},
+func testCRD(bundleVersion string) *unstructured.Unstructured {
+	crd := newCRD(testCRDName)
+	crd.SetAnnotations(map[string]string{
+		// CRDs in the *.k8s.io groups need an approval annotation. This one is never part
+		// of the API, so it explicitly bypasses the approval process.
+		"api-approved.kubernetes.io": "unapproved.kubernetes.io/e2e-test",
+		channelAnnotation:            "standard",
+		bundleVersionAnnotation:      bundleVersion,
+	})
+	crd.Object["spec"] = map[string]any{
+		"group": "gateway.networking.k8s.io",
+		"scope": "Namespaced",
+		"names": map[string]any{
+			"kind":     "E2ETest",
+			"listKind": "E2ETestList",
+			"plural":   "e2etests",
+			"singular": "e2etest",
 		},
-		Spec: apiextensionsv1.CustomResourceDefinitionSpec{
-			Group: "gateway.networking.k8s.io",
-			Names: apiextensionsv1.CustomResourceDefinitionNames{
-				Kind:     "E2ETest",
-				ListKind: "E2ETestList",
-				Plural:   "e2etests",
-				Singular: "e2etest",
-			},
-			Scope: apiextensionsv1.NamespaceScoped,
-			Versions: []apiextensionsv1.CustomResourceDefinitionVersion{
-				{
-					Name:    "v1alpha1",
-					Served:  true,
-					Storage: true,
-					Schema: &apiextensionsv1.CustomResourceValidation{
-						OpenAPIV3Schema: &apiextensionsv1.JSONSchemaProps{
-							Type:                   "object",
-							XPreserveUnknownFields: ptr.To(true),
-						},
+		"versions": []any{
+			map[string]any{
+				"name":    "v1alpha1",
+				"served":  true,
+				"storage": true,
+				"schema": map[string]any{
+					"openAPIV3Schema": map[string]any{
+						"type":                                 "object",
+						"x-kubernetes-preserve-unknown-fields": true,
 					},
 				},
 			},
 		},
 	}
+
+	return crd
 }

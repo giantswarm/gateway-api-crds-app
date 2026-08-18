@@ -1,0 +1,76 @@
+{{- $files := include "gateway-api-crds.selectedFiles" . }}
+{{- if $files }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "gateway-api-crds.installerName" . }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": "pre-install,pre-upgrade"
+    "helm.sh/hook-weight": "-1"
+    # "before-hook-creation" is required because Job specs are immutable. "hook-failed" is
+    # deliberately absent so a failed Job and its logs survive for debugging.
+    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
+  labels:
+    {{- include "gateway-api-crds.labels" . | nindent 4 }}
+spec:
+  # Kept low: the Helm hook timeout is 300s, so more retries than this cannot complete.
+  backoffLimit: 3
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: "crd-installer"
+        {{- include "gateway-api-crds.labels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "gateway-api-crds.installerName" . }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: crd-installer
+        image: {{ include "gateway-api-crds.image" . }}
+        imagePullPolicy: IfNotPresent
+        command:
+        - sh
+        - -c
+        - |
+          set -o errexit ; set -o xtrace ; set -o nounset
+          kubectl apply --server-side=true --field-manager='kubectl-client-side-apply' --force-conflicts --cache-dir=/tmp/kubecache{{ range (splitList " " $files) }} -f {{ . }}{{ end }} 2>&1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          runAsUser: 1000
+          runAsGroup: 1000
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      # readOnlyRootFilesystem is on, so give kubectl a writable discovery cache.
+      - name: tmp
+        emptyDir: {}
+      restartPolicy: Never
+{{- end }}

@@ -9,25 +9,17 @@ script_dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd ) ; readonly script_d
 
 cd "${repo_dir}"
 
-templates_path="./helm/gateway-api-crds/templates/"
+crds_path="./crds"
 
 set -x
 
-cd "${templates_path}"
+# The CRDs are applied by the installer Job, so Helm never owns them and this annotation is
+# inert under server-side apply. It is kept as a safety net: clusters that installed an
+# earlier chart version have Helm-managed CRDs carrying it, and Helm skips deleting
+# annotated resources that disappear from the release manifest on upgrade.
+# One yq call per file: passing several files to a single "yq -i" merges all of their
+# documents into one output file.
+find "${crds_path}" -type f -name '*.yaml' \
+  -exec yq -i '.metadata.annotations += {"helm.sh/resource-policy":"keep"}' {} \;
 
-{ set +x; } 2>/dev/null
-for f in *.yaml ; do
-  [[ "$f" == "_helpers.yaml" ]] && continue
-  # Keeping the admission policy around after an uninstall would block reinstalling
-  # older CRDs on that cluster.
-  [[ "$f" == standard-safe-upgrades-* ]] && continue
-
-  set -x
-  yq -i '.metadata.annotations += {"helm.sh/resource-policy":"keep"}' $f
-
-  { set +x; } 2>/dev/null
-done
-
-set -x
-cd "${repo_dir}"
 { set +x; } 2>/dev/null

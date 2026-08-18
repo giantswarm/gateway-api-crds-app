@@ -38,3 +38,14 @@ install:
 
   # Set to true to install the safe-upgrades ValidatingAdmissionPolicy and its binding
   admissionPolicies: true
+
+crds:
+  image:
+    registry: gsoci.azurecr.io
+    repository: giantswarm/gateway-api-crds
+    # Defaults to the chart version. Set it to pin a specific installer image, e.g. a branch build.
+    tag: ""
+
+ciliumNetworkPolicy:
+  # Allows the installer Job to reach the Kubernetes API server.
+  enabled: true

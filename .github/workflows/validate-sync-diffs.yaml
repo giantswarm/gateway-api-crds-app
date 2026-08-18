@@ -26,4 +26,7 @@ jobs:
 
       - name: Check there is no diff
         run: |
-          git diff --exit-code
+          # "git add -A" first: a bare "git diff" ignores untracked files, so a newly
+          # generated CRD that was never committed would slip through.
+          git add -A
+          git diff --cached --exit-code

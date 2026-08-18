@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Apply the CRDs from a dedicated installer image via a `pre-install`/`pre-upgrade` hook Job instead of rendering them as Helm templates. The rendered release no longer contains the CRDs, which kept it from fitting in Helm's release Secret.
+- CRDs are applied with server-side apply and are no longer Helm-managed, so `helm uninstall` leaves them in place and a CRD rejected by the `safe-upgrades` policy now surfaces as a failed hook Job.
+- Reject unknown keys under `install`, which previously were silently ignored.
+
+### Added
+
+- `crds.image` values to override the installer image. The tag defaults to the chart version.
+
 ## [1.9.0] - 2026-08-17
 
 ### Changed

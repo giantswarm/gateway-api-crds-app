@@ -16,7 +16,7 @@ vendir sync
 ./sync/patches/split-gapi-crds/patch.sh
 ./sync/patches/split-inference-crds/patch.sh
 ./sync/patches/helm-keep-annotation/patch.sh
-./sync/patches/helm-templating/patch.sh
+./sync/patches/crds-job/patch.sh
 ./sync/patches/update-chart-yaml-appversion/patch.sh
 
 # Skip diff storage for now

@@ -1,0 +1,5 @@
+appName: gateway-api-crds
+repoName: gateway-api-crds-app
+appCatalog: giantswarm
+providers:
+- capa

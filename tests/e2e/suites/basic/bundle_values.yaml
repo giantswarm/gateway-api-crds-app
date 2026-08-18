@@ -1,0 +1,14 @@
+apps:
+  gatewayApiCrds:
+    userConfig:
+      configMap:
+        values:
+          install:
+            # Off by default, opted in here to cover the path where a user enables an
+            # additional CRD.
+            inferencepools: standard
+  # Only the CRD app is under test, the rest of the bundle is not needed for it.
+  envoyGateway:
+    enabled: false
+  gatewayApiConfig:
+    enabled: false

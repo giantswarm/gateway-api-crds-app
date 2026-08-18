@@ -24,6 +24,8 @@ Consequences worth knowing:
 - Nothing is ever pruned. Setting a key to `""` stops that CRD from being applied but does
   not remove it from the cluster.
 - `helm rollback` does not revert CRDs.
+- The Job needs egress to the Kubernetes API server. The chart ships a `CiliumNetworkPolicy`
+  for that, which can be disabled with `ciliumNetworkPolicy.enabled`.
 
 To regenerate `crds/` and the chart templates after changing `vendir.yml`, run `./sync/sync.sh`.
 

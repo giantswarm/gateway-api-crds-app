@@ -1,0 +1,49 @@
+{{- if include "gateway-api-crds.selectedFiles" . }}
+{{- if .Values.ciliumNetworkPolicy.enabled }}
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ include "gateway-api-crds.installerName" . }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    # Lowest weight of the hook set: the policy has to exist before the Job starts, or
+    # kubectl cannot reach the API server.
+    "helm.sh/hook": "pre-install,pre-upgrade"
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
+  labels:
+    app.kubernetes.io/component: "crd-installer"
+    {{- include "gateway-api-crds.labels" . | nindent 4 }}
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/component: "crd-installer"
+      app.kubernetes.io/name: {{ include "gateway-api-crds.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  egress:
+    - toEntities:
+        - kube-apiserver
+    - toEndpoints:
+        - matchLabels:
+            k8s:io.kubernetes.pod.namespace: default
+            k8s:k8s-app: kubernetes
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
+    - toEndpoints:
+        - matchLabels:
+            k8s:component: kube-apiserver
+            k8s:tier: control-plane
+    - toEndpoints:
+        - matchLabels:
+            k8s:io.kubernetes.pod.namespace: kube-system
+            k8s:k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+            - port: "53"
+              protocol: TCP
+{{- end }}
+{{- end }}

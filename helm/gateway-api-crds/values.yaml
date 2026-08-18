@@ -45,3 +45,7 @@ crds:
     repository: giantswarm/gateway-api-crds
     # Defaults to the chart version. Set it to pin a specific installer image, e.g. a branch build.
     tag: ""
+
+ciliumNetworkPolicy:
+  # Allows the installer Job to reach the Kubernetes API server.
+  enabled: true

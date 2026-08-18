@@ -20,6 +20,7 @@ spec:
   template:
     metadata:
       labels:
+        app.kubernetes.io/component: "crd-installer"
         {{- include "gateway-api-crds.labels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ include "gateway-api-crds.installerName" . }}

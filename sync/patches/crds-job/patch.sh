@@ -21,5 +21,6 @@ mkdir -p "${templates_path}/crds"
 cp "${script_dir_rel}/serviceaccount.yaml" "${templates_path}/crds/serviceaccount.yaml"
 cp "${script_dir_rel}/rbac.yaml" "${templates_path}/crds/rbac.yaml"
 cp "${script_dir_rel}/job.yaml" "${templates_path}/crds/job.yaml"
+cp "${script_dir_rel}/networkpolicy.yaml" "${templates_path}/crds/networkpolicy.yaml"
 
 { set +x; } 2>/dev/null

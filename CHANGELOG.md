@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `crds.image` values to override the installer image. The tag defaults to the chart version.
+- `CiliumNetworkPolicy` allowing the installer Job to reach the Kubernetes API server, without which the Job cannot apply the CRDs on clusters that default to denying egress. Set `ciliumNetworkPolicy.enabled` to `false` to skip it.
 
 ## [1.9.0] - 2026-08-17
 

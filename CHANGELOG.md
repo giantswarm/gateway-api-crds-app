@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.1] - 2026-08-19
+
 ### Changed
 
 - Apply the CRDs from a dedicated installer image via a `pre-install`/`pre-upgrade` hook Job instead of rendering them as Helm templates. The rendered release no longer contains the CRDs, which kept it from fitting in Helm's release Secret.
@@ -130,7 +132,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release
 
-[Unreleased]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.9.0...HEAD
+[Unreleased]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.9.1...HEAD
+[1.9.1]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.8.1...v1.9.0
 [1.8.1]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.8.0...v1.8.1
 [1.8.0]: https://github.com/giantswarm/gateway-api-crds-app/compare/v1.7.0...v1.8.0

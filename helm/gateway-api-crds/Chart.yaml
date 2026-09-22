@@ -10,5 +10,10 @@ sources:
 version: 1.9.1
 annotations:
   io.giantswarm.application.team: cabbage
+  io.giantswarm.application.managed: "true"
   io.giantswarm.application.audience: "all"
 kubeVersion: ">=1.25.0-0"
+keywords:
+  - gateway-api
+  - crds
+  - networking

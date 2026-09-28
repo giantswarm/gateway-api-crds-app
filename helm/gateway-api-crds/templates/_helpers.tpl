@@ -7,7 +7,7 @@
 {{- end -}}
 
 {{- define "gateway-api-crds.chart" -}}
-{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimAll "-._" -}}
 {{- end -}}
 
 {{- define "gateway-api-crds.labels" -}}

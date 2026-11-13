@@ -1,40 +1,40 @@
 install:
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
-  gatewayclasses: standard
+  gatewayclasses: standard  # @schema enum: [standard, experimental, ""]
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
-  gateways: standard
+  gateways: standard  # @schema enum: [standard, experimental, ""]
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
-  grpcroutes: standard
+  grpcroutes: standard  # @schema enum: [standard, experimental, ""]
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
-  httproutes: standard
+  httproutes: standard  # @schema enum: [standard, experimental, ""]
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
-  referencegrants: standard
+  referencegrants: standard  # @schema enum: [standard, experimental, ""]
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
-  backendtlspolicies: standard
+  backendtlspolicies: standard  # @schema enum: [standard, experimental, ""]
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
-  listenersets: "standard"
+  listenersets: "standard"  # @schema enum: [standard, experimental, ""]
 
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
-  tcproutes: standard
+  tcproutes: standard  # @schema enum: [standard, experimental, ""]
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
-  tlsroutes: standard
+  tlsroutes: standard  # @schema enum: [standard, experimental, ""]
   # Supports "standard", "experimental" and "" (empty string to disable rendering this CRD)
-  udproutes: standard
+  udproutes: standard  # @schema enum: [standard, experimental, ""]
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
-  xbackends: ""
+  xbackends: ""  # @schema enum: [experimental, ""]
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
-  xbackendtrafficpolicies: ""
+  xbackendtrafficpolicies: ""  # @schema enum: [experimental, ""]
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
-  xmeshes: ""
+  xmeshes: ""  # @schema enum: [experimental, ""]
 
   # Supports "standard" and "" (empty string to disable rendering this CRD)
-  inferencepools: ""
+  inferencepools: ""  # @schema enum: [standard, ""]
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
-  inferenceobjectives: ""
+  inferenceobjectives: ""  # @schema enum: [experimental, ""]
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
-  inferencepoolimports: ""
+  inferencepoolimports: ""  # @schema enum: [experimental, ""]
   # Supports "experimental" and "" (empty string to disable rendering this CRD)
-  inferencemodelrewrites: ""
+  inferencemodelrewrites: ""  # @schema enum: [experimental, ""]
 
   # Set to true to install the safe-upgrades ValidatingAdmissionPolicy and its binding
   admissionPolicies: true

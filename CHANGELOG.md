@@ -13,10 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Keep the allowed CRD channels in the values schema when it is generated from `values.yaml`.
 - The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
 
 ### Added
 
+- Chart README generated from the values.
 - Chart metadata: add `io.giantswarm.application.managed` annotation (`"true"`).
 - Chart metadata: add `keywords`.
 

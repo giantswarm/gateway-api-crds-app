@@ -27,7 +27,8 @@ const (
 
 func TestBasic(t *testing.T) {
 	suite.New().
-		InAppBundle("gateway-api-bundle").
+		InAppBundle(bundleName).
+		WithHelmRelease(true).
 		WithInstallNamespace(installNamespace).
 		WithIsUpgrade(isUpgrade).
 		WithValuesFile("./values.yaml").
